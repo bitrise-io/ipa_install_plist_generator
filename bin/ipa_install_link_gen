@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+$:.push File.expand_path("../../lib", __FILE__)
+require 'ipa_install_plist_generator'
+
+
+# -------------------------
+# --- Options
+
+options = {
+	install_plist_url: nil,
+	# utils
+	is_verbose: false
+}
+
+opt_parser = OptionParser.new do |opt|
+	opt.banner = "Usage: ipa_install_plist_generator.rb [OPTIONS]"
+	opt.separator  ""
+	opt.separator  "Options, the ones marked with * are required"
+
+	opt.on("-l","--link LINK_URL", "*Plist download URL. It will print an install-url (to the Plist's URL you provide) which can be opened on an iOS device to install the app (itms-services://?action=download-manifest&url=https://path/to/app.plist).") do |value|
+		options[:install_plist_url] = value
+	end
+
+	opt.on("-v","--verbose","Verbose output") do
+		options[:is_verbose] = true
+	end
+
+	opt.on("-h","--help","Shows this help message") do
+		puts opt_parser
+		exit 0
+	end
+end
+
+opt_parser.parse!
+$options = options
+
+
+# -------------------------
+# --- Utils
+
+def vputs(msg="")
+	if $options[:is_verbose]
+		puts msg
+	end
+end
+
+
+# -------------------------
+# --- Main
+
+vputs "options: #{options}"
+
+raise "No .plist URL specified" unless options[:install_plist_url]
+
+inst_url = options[:install_plist_url]
+full_itms_install_url = IpaInstallPlistGenerator::LinkGenerator.new.generate_install_link(inst_url)
+puts full_itms_install_url
+exit 0

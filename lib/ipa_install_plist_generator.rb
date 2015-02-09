@@ -1,0 +1,3 @@
+require 'ipa_install_plist_generator/version'
+require 'ipa_install_plist_generator/install_link_generator'
+require 'ipa_install_plist_generator/install_plist_generator'
