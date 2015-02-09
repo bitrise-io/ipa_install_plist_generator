@@ -5,6 +5,14 @@ Ruby GEM to generate a .plist which can be used for an IPA install.
 This GEM can be used in your Ruby project directly or
 you can install it and use it in your Command Line / Terminal.
 
+You can use this GEM by adding it to your Gemfile:
+
+    gem 'ipa_install_plist_generator', '~> 0.2.0'
+
+Or install it as a system-wide GEM / CLI:
+
+    gem install ipa_install_plist_generator
+
 You can use this GEM as a CLI in two modes:
 
 1. To generate a .plist file which you can save to your server to install an iOS app .ipa. Use the `ipa_plist_gen` command in your Command Line / Terminal.
