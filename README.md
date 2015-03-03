@@ -7,7 +7,7 @@ you can install it and use it in your Command Line / Terminal.
 
 You can use this GEM by adding it to your Gemfile:
 
-    gem 'ipa_install_plist_generator', '~> 0.2.0'
+    gem 'ipa_install_plist_generator'
 
 Or install it as a system-wide GEM / CLI:
 
